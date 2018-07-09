@@ -68,36 +68,27 @@ import model.entity.User;
 					List<Access> access = (List<Access>) q.execute();
                     if(req.getParameter("edit")!=null||req.getParameter("del")!=null){
                     	if(req.getParameter("edit")!=null){
-                    		req.setAttribute("facturas", access);
                     		resp.setContentType("text/plain");
-                    		String s=req.getParameter("edit");
-                    		int i=(Integer.parseInt((String)s.substring(5)));
-                    		Long ad=Long.parseLong((String) req.getParameter("id"+i));
+                    		int i=(Integer.parseInt((String) req.getParameter("edit")));
+                    		Long ad=null;
+                    		int o=0;
+                    		for( Access p : access ) {
+	                    		if(i==o){ad=Long.parseLong(p.getId());}
+	                    		o++;}
                     		q.setFilter("id == ad");
                         	q.declareParameters("Long ad");
-                        	List<Resource> results = (List<Resource>) q.execute(ad);
-                        	req.setAttribute("fact", results);
-                        	RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/Facturas/editFacturas2.jsp");
+                        	List<Access> results = (List<Access>) q.execute(ad);
+                        	req.setAttribute("access", results);
+                        	RequestDispatcher rd = req.getRequestDispatcher("/access/edit");
                         	rd.forward(req, resp);
                     		//resp.getWriter().println(i);
                     	}
                     	else if(req.getParameter("del")!=null){
                     	resp.setContentType("text/plain");
-                    	String s=req.getParameter("del");
-                    	Long ad=null;
-                    	int e=(Integer.parseInt((String)s.substring(4)));
-                    	int o=0;
-                    	for( Access p : access ) {
-                    		if(e==o){
-                    			ad=Long.parseLong(p.getId());
-                    		}
-                    		o++;
-                    	}
-                    	q.setFilter("id == ad");
-                    	q.declareParameters("Long ad");
-                    	q.deletePersistentAll(ad);
-                    	resp.sendRedirect("access");
-                    	}
+                    	int e=(Integer.parseInt((String) req.getParameter("del")));
+                    	req.setAttribute("e", e);
+                    	RequestDispatcher rd = req.getRequestDispatcher("/access/delete");
+                    	rd.forward(req, resp);}
 					}
                     else{
                     req.setAttribute("access", access);

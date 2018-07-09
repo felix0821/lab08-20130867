@@ -13,7 +13,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
-
+import javax.jdo.Query;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -60,12 +60,21 @@ public class RolesControllerAdd extends HttpServlet {
 						dp.forward(req, resp);
 					}else{
 						//Ejecucion de la pagina
+						final Query q = pm.newQuery(Role.class);
+						try{
 						String role;
 						String date;
 						resp.setContentType("text/plain");
 						resp.setCharacterEncoding("UTF-8");
 						//verificamos si el boton esta apretado
 						 if(req.getParameter("submit")!=null&&req.getParameter("role")!=null){
+						//Verificamos que no se repita el rol
+						boolean noRepetido=true;
+						List<Role> roles = (List<Role>) q.execute();
+						for( Role p : roles  ) {
+				    		if(p.getName().equals(req.getParameter("role"))){
+				    			noRepetido=false;}}
+						if(noRepetido){	 
 					    role = req.getParameter("role");
 						date = fecha();
 						final Role r = new Role(role, date);
@@ -75,11 +84,24 @@ public class RolesControllerAdd extends HttpServlet {
 							resp.sendRedirect("/roles");
 						}catch(Exception e){
 							System.out.println(e);
+							resp.setContentType("text/plain");
 							resp.getWriter().println("Ocurrió un error, vuelva a intentarlo.");
-							resp.sendRedirect("/roles/add");}
+							resp.sendRedirect("/roles/add");}}
+						else{
+							resp.setContentType("text/plain");
+							resp.getWriter().println("Ya existe esta rol");
+							RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/Views/Error/errorExistRol.jsp");
+							rd.forward(req, resp);
+						}
 						}else{
 							RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/Views/Roles/add.jsp");
 						    dispatcher.forward(req, resp);}
+						 
+						}catch(Exception e){
+					    	System.out.println(e);
+						}finally{
+							q.closeAll();
+						}
 						//fin de la ejecucion
 	}}}}
 	}catch(Exception e){

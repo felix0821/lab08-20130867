@@ -45,7 +45,7 @@ public class Access {
 	
 	public Long getRole(){return role;}
 	
-	public void setLong(Long role){this.role=role;}
+	public void setRole(Long role){this.role=role;}
 	
     public Long getResource(){return resource;}
 	

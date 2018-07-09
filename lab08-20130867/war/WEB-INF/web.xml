@@ -50,6 +50,24 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>UsersControllerEdit</servlet-name>
+		<servlet-class>controller.users.UsersControllerEdit</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UsersControllerEdit</servlet-name>
+		<url-pattern>/users/edit</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>UsersControllerDelete</servlet-name>
+		<servlet-class>controller.users.UsersControllerDelete</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UsersControllerDelete</servlet-name>
+		<url-pattern>/users/delete</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>UsersControllerIndex</servlet-name>
 		<servlet-class>controller.users.UsersControllerIndex</servlet-class>
 	</servlet>
@@ -65,6 +83,24 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>RolesControllerAdd</servlet-name>
 		<url-pattern>/roles/add</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>RolesControllerEdit</servlet-name>
+		<servlet-class>controller.roles.RolesControllerEdit</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RolesControllerEdit</servlet-name>
+		<url-pattern>/roles/edit</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>RolesControllerDelete</servlet-name>
+		<servlet-class>controller.roles.RolesControllerDelete</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RolesControllerDelete</servlet-name>
+		<url-pattern>/roles/delete</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -86,6 +122,24 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>ResourcesControllerEdit</servlet-name>
+		<servlet-class>controller.resources.ResourcesControllerEdit</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ResourcesControllerEdit</servlet-name>
+		<url-pattern>/resources/edit</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ResourcesControllerDelete</servlet-name>
+		<servlet-class>controller.resources.ResourcesControllerDelete</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ResourcesControllerDelete</servlet-name>
+		<url-pattern>/resources/delete</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>ResourcesControllerIndex</servlet-name>
 		<servlet-class>controller.resources.ResourcesControllerIndex</servlet-class>
 	</servlet>
@@ -104,6 +158,24 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>AccessControllerEdit</servlet-name>
+		<servlet-class>controller.access.AccessControllerEdit</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AccessControllerEdit</servlet-name>
+		<url-pattern>/access/edit</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AccessControllerDelete</servlet-name>
+		<servlet-class>controller.access.AccessControllerDelete</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AccessControllerDelete</servlet-name>
+		<url-pattern>/access/delete</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>AccessControllerIndex</servlet-name>
 		<servlet-class>controller.access.AccessControllerIndex</servlet-class>
 	</servlet>
@@ -111,6 +183,63 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>AccessControllerIndex</servlet-name>
 		<url-pattern>/access</url-pattern>
 	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>InvoicesControllerIndex</servlet-name>
+		<servlet-class>controller.invoices.InvoicesControllerIndex</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InvoicesControllerIndex</servlet-name>
+		<url-pattern>/invoices</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ListFacturas</servlet-name>
+		<servlet-class>controller.invoices.ListFacturas</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListFacturas</servlet-name>
+		<url-pattern>/invoices/listFacturas</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SaveFactura</servlet-name>
+		<servlet-class>controller.invoices.SaveFactura</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SaveFactura</servlet-name>
+		<url-pattern>/invoices/saveFactura</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>RemoveFactura</servlet-name>
+		<servlet-class>controller.invoices.RemoveFactura</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RemoveFactura</servlet-name>
+		<url-pattern>/invoices/removeFactura</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>EditFacturas</servlet-name>
+		<servlet-class>controller.invoices.EditFacturas</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EditFacturas</servlet-name>
+		<url-pattern>/invoices/editFacturas</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Renovar</servlet-name>
+		<servlet-class>controller.invoices.Renovar</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Renovar</servlet-name>
+		<url-pattern>/invoices/renovar</url-pattern>
+	</servlet-mapping>
+	
+	
 	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

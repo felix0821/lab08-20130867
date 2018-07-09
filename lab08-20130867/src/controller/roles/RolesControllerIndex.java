@@ -65,32 +65,24 @@ import model.entity.User;
 							List<Role> roles = (List<Role>) q.execute();
 		                    if(req.getParameter("edit")!=null||req.getParameter("del")!=null){
 		                    	if(req.getParameter("edit")!=null){
-		                    		req.setAttribute("facturas", roles);
-		                    		resp.setContentType("text/plain");
-		                    		String s=req.getParameter("edit");
-		                    		int i=(Integer.parseInt((String)s.substring(5)));
-		                    		Long ad=Long.parseLong((String) req.getParameter("id"+i));
+		                    		int i=(Integer.parseInt((String) req.getParameter("edit")));
+		                    		Long ad=null;
+		                    		int o=0;
+		                    		for( Role p : roles ) {
+			                    		if(i==o){ad=Long.parseLong(p.getId());}
+			                    		o++;}
 		                    		q.setFilter("id == ad");
 		                        	q.declareParameters("Long ad");
 		                        	List<Role> results = (List<Role>) q.execute(ad);
-		                        	req.setAttribute("fact", results);
-		                        	RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/Facturas/editFacturas2.jsp");
-		                        	rd.forward(req, resp);}
+		                        	req.setAttribute("role", results);
+		                        	RequestDispatcher rd = req.getRequestDispatcher("/roles/edit");
+		                        	rd.forward(req, resp);
 		                    		//resp.getWriter().println(i);
-		                    	else if(req.getParameter("del")!=null){
-		                    	resp.setContentType("text/plain");
-		                    	String s=req.getParameter("del");
-		                    	Long ad=null;
-		                    	int e=(Integer.parseInt((String)s.substring(4)));
-		                    	int o=0;
-		                    	for( Role p : roles ) {
-		                    		if(e==o){ad=Long.parseLong(p.getId());}
-		                    		o++;
-		                    	}
-		                    	q.setFilter("id == ad");
-		                    	q.declareParameters("Long ad");
-		                    	q.deletePersistentAll(ad);
-		                    	resp.sendRedirect("roles");}
+		                    	}else if(req.getParameter("del")!=null){
+		                    		int e=(Integer.parseInt((String) req.getParameter("del")));
+			                    	req.setAttribute("e", e);
+		                        	RequestDispatcher rd = req.getRequestDispatcher("/roles/delete");
+		                        	rd.forward(req, resp);}
 							}else{
 		                    req.setAttribute("roles", roles);
 							RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/Views/Roles/index.jsp");

@@ -71,11 +71,11 @@ public class SaveFactura extends HttpServlet {
 		try{
 			pm.makePersistent(p);
 			resp.getWriter().println("Persona grabada correctamente.");
-			resp.sendRedirect("/listFacturas");
+			resp.sendRedirect("/invoices/listFacturas");
 		}catch(Exception e){
 			System.out.println(e);
 			resp.getWriter().println("Ocurrió un error, vuelva a intentarlo.");
-			resp.sendRedirect("/saveFacturas");
+			resp.sendRedirect("/invoices/saveFacturas");
 		}finally{
 			pm.close();
 			pedido=0;
@@ -125,7 +125,7 @@ public class SaveFactura extends HttpServlet {
 				req.setAttribute("direccion", direccion);
 				req.setAttribute("fecha", fecha);
 				req.setAttribute("pedido", pedido);
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/Facturas/saveFactura.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/Views/Invoices/saveFactura.jsp");
 		    try {
 		    	dispatcher.forward(req, resp);
 		    }catch(ServletException e) {

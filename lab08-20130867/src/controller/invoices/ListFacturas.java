@@ -36,14 +36,14 @@ import model.entity.Factura;
                     	q.declareParameters("Long ad");
                     	List<Factura> results = (List<Factura>) q.execute(ad);
                     	req.setAttribute("fact", results);
-                    	RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/Facturas/listFacturas2.jsp");
+                    	RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/Views/Invoices/listFacturas2.jsp");
     					rd.forward(req, resp);
                     	/*for (Factura p : results) {
                     		resp.getWriter().println(p.getDireccion());
                     	    }*/
 					}
                     else{
-					RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/Facturas/listFacturas.jsp");
+					RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/Views/Invoices/listFacturas.jsp");
 					rd.forward(req, resp);
                     }
 				

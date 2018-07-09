@@ -22,7 +22,13 @@ public class User {
 	private Long role;
 	
 	@Persistent
-	private String birth;
+	private int birthD;
+	
+	@Persistent
+	private String birthM;
+	
+	@Persistent
+	private int birthY;
 	
 	@Persistent
 	private boolean gender;
@@ -35,11 +41,13 @@ public class User {
 	
 	
 
-	public User(String email, Long role, String birth, boolean gender, String created) {
+	public User(String email, Long role, int birthD, String birthM, int birthY, boolean gender, String created) {
 		super();
 		this.email = email;
 		this.role=role;
-		this.birth=birth;
+		this.birthD=birthD;
+		this.birthM=birthM;
+		this.birthY=birthY;
 		this.gender=gender;
 		this.created = created;
 		this.status=true;
@@ -56,27 +64,29 @@ public class User {
 	}
 
 	public String getEmail() {return this.email;}
-
 	public void setEmail(String email) {this.email = email;}
 	
 	public Long getRole(){return role;}
+	public void setRole(Long role){this.role=role;}
 	
-	public String getBirth() {return this.birth;}
+	public int getBirthD(){return this.birthD;}
+	public void setBirthD(int birthD) {this.birthD = birthD;}
 	
-	public void setBirth(String birth) {this.birth = birth;}
+	public String getBirthM() {return this.birthM;}
+	public void setBirthM(String birthM) {this.birthM = birthM;}
 	
-	public void setLong(Long role){this.role=role;}
+	public int getBirthY(){return this.birthY;}
+	public void setBirthY(int birthY) {this.birthY = birthY;}
+	
+	public String getBirth() {return birthD+"/"+birthM+"/"+birthY;}
 	
 	public boolean getGender(){return gender;}
-	
-	public void setGnder(boolean gender){this.gender=gender;}
+	public void setGender(boolean gender){this.gender=gender;}
 
 	public boolean getStatus() {return this.status;}
-
 	public void setStatus(boolean status) {this.status = status;}
 
 	public String getCreated() {return this.created;}
-
 	public void setCreated(String created) {this.created = created;}
 	
 

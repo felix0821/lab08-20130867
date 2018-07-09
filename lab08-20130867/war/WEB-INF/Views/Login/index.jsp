@@ -24,8 +24,10 @@ User user = (User) request.getAttribute("user");
 %>
 <h2>Bienvenido a la pagina principal <%=user.getEmail()%></h2>
 <form action="add" method="get">
-<fieldset><legend>New access</legend>
+<fieldset><legend>Index</legend>
 <div class="col-xs-2">
+<p>
+<p>
 		<div class="form-group row">
 		<li><a href="/users">Users</a></li>
 		</div>

@@ -5,7 +5,7 @@
 
 <html lang="es">
 <head>
-<title>Usuario</title>
+<title>New Users</title>
 <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,17 +24,13 @@
     function cuantosDias(mes, anyo)
     {
         var cuantosDias = 31;
-        if (mes == "Abril" || mes == "Junio" || mes == "Septiembre" || mes == "Noviembre")
-      cuantosDias = 30;
-        if (mes == "Febrero" && (anyo/4) != Math.floor(anyo/4))
-      cuantosDias = 28;
-        if (mes == "Febrero" && (anyo/4) == Math.floor(anyo/4))
-      cuantosDias = 29;
+        if (mes == "April" || mes == "June" || mes == "September" || mes == "November") cuantosDias = 30;
+        if (mes == "February" && (anyo/4) != Math.floor(anyo/4)) cuantosDias = 28;
+        if (mes == "February" && (anyo/4) == Math.floor(anyo/4)) cuantosDias = 29;
         return cuantosDias;
     }
 
-    function asignaDias()
-    {
+    function asignaDias(){
         comboDias = document.formFecha.selectDay;
         comboMeses = document.formFecha.selectMonth;
         comboAnyos = document.formFecha.selectYear;
@@ -45,21 +41,13 @@
         diasEnMes = cuantosDias(Month, Year);
         diasAhora = comboDias.length;
 
-        if (diasAhora > diasEnMes)
-        {
-            for (i=0; i<(diasAhora-diasEnMes); i++)
-            {
-                comboDias.options[comboDias.options.length - 1] = null
-            }
-        }
-        if (diasEnMes > diasAhora)
-        {
-            for (i=0; i<(diasEnMes-diasAhora); i++)
-            {
+        if (diasAhora > diasEnMes){
+            for (i=0; i<(diasAhora-diasEnMes); i++){
+                comboDias.options[comboDias.options.length - 1] = null}}
+        if (diasEnMes > diasAhora) {
+            for (i=0; i<(diasEnMes-diasAhora); i++){
                 sumaOpcion = new Option(comboDias.options.length + 1);
-                comboDias.options[comboDias.options.length]=sumaOpcion;
-            }
-        }
+                comboDias.options[comboDias.options.length]=sumaOpcion;}}
         if (comboDias.selectedIndex < 0)
           comboDias.selectedIndex = 0;
      }
@@ -80,7 +68,6 @@
     function rellenaAnyos(masAnyos)
     {
         cadena = "";
-
         for (i=0; i<masAnyos; i++)
         {
             cadena += "<option>";
@@ -92,8 +79,8 @@
 </head>
 <body onLoad="ponDia();">
 <ul class="pager">
-<li><a href="/users/index">Regresar...</a></li>
-<li><a href="/users">Lista</a></li>
+<li><a href="/users">Regresar...</a></li>
+<li><a href="/users/index">Inicio</a></li>
 </ul>
 <!-- Menú de navegación del sitio -->
 
@@ -102,9 +89,7 @@
 <div class="container">
     <div class="form-group row">
 	<div class="col-xs-3">
-	<%
-    List<Role> roles = (List<Role>) request.getAttribute("roles");
-    %>
+	<%List<Role> roles = (List<Role>) request.getAttribute("roles");%>
 		<label for="sel1">Rol:</label>
 		<%if(roles.size()>0 ){%>
       <select class="form-control" name="rol" id="sel1">
@@ -137,42 +122,12 @@
 	<div class="col-xs-1">
 	<label for="selectDay">Day :</label>
   <select name="selectDay" class="form-control" id="sel1">
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-    <option>6</option>
-    <option>7</option>
-    <option>8</option>
-    <option>9</option>
-    <option>10</option>
-    <option>11</option>
-    <option>12</option>
-    <option>13</option>
-    <option>14</option>
-    <option>15</option>
-    <option>16</option>
-    <option>17</option>
-    <option>18</option>
-    <option>19</option>
-    <option>20</option>
-    <option>21</option>
-    <option>22</option>
-    <option>23</option>
-    <option>24</option>
-    <option>25</option>
-    <option>26</option>
-    <option>27</option>
-    <option>28</option>
-    <option>29</option>
-    <option>30</option>
-    <option>31</option>
+  <%for(int i=1;i<32;i++){%><option><%=i %></option><%}%>
   </select>
   </div>
   <div class="col-xs-2">
   <label for="selectMonth">Month :</label>
-  <select name="selectMonth" class="form-control" id="sel1" onchange="asignaDias()">
+  <select name="selectMonth" class="form-control" id="sel1" onchange="asignaDias();">
     <option>January</option>
     <option>February</option>
     <option>March</option>
@@ -189,7 +144,7 @@
   </div>
   <div class="col-xs-2">
   <label for="selectYear">Year :</label>
-  <select name="selectYear" class="form-control" id="sel1" onchange="asignaDias()">
+  <select name="selectYear" class="form-control" id="sel1" onchange="asignaDias();">
     <script language="JavaScript" type="text/javascript">
         document.write(rellenaAnyos(80));
     </script>
@@ -202,6 +157,7 @@
       <input type="checkbox" name="gender" value="">Gender
     </label>
     </div>
+	</div>
 	</div>
 	</fieldset>
 	<p>

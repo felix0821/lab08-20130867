@@ -5,7 +5,7 @@
 <%@ page import= "com.google.appengine.api.users.User"%>
 <html lang="es">
 <head>
-<title>Start</title>
+<title>Login</title>
 <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,14 +16,14 @@
 <body>
 <!-- Menú de navegación del sitio -->
 <ul class="pager">
-  <li><a href="/users/index">Regresar..</a>
+  <li><a href="/..">Regresar..</a>
 </ul>
 <%
 User user = (User) request.getAttribute("user");
 %>
 <h2>Pagina de inicio</h2>
 <form action="login" method="get">
-<fieldset><legend>New access</legend>
+<fieldset><legend>Login</legend>
 		<div class="form-group row">
 	<div class="col-xs-3">
 		<label for="role">Correo :</label>

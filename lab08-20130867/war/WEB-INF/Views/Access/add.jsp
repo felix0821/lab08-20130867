@@ -5,7 +5,7 @@
 
 <html lang="es">
 <head>
-<title>Usuario</title>
+<title>New Access</title>
 <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,8 +15,8 @@
 </head>
 <body>
 <ul class="pager">
-<li><a href="/users/index">Regresar...</a></li>
-<li><a href="/access">Lista</a></li>
+<li><a href="/access">Regresar...</a></li>
+<li><a href="/users/index">Inicio</a></li>
 </ul>
 <!-- Menú de navegación del sitio -->
 <%

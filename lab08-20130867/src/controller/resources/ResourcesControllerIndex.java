@@ -65,32 +65,25 @@ import model.entity.User;
 								List<Resource> resource = (List<Resource>) q.execute();
 			                    if(req.getParameter("edit")!=null||req.getParameter("del")!=null){
 			                    	if(req.getParameter("edit")!=null){
-			                    		req.setAttribute("facturas", resource);
-			                    		resp.setContentType("text/plain");
-			                    		String s=req.getParameter("edit");
-			                    		int i=(Integer.parseInt((String)s.substring(5)));
-			                    		Long ad=Long.parseLong((String) req.getParameter("id"+i));
+			                    		int i=(Integer.parseInt((String) req.getParameter("edit")));
+			                    		Long ad=null;
+			                    		int o=0;
+			                    		for( Resource p : resource ) {
+				                    		if(i==o){ad=Long.parseLong(p.getId());}
+				                    		o++;}
 			                    		q.setFilter("id == ad");
 			                        	q.declareParameters("Long ad");
 			                        	List<Resource> results = (List<Resource>) q.execute(ad);
-			                        	req.setAttribute("fact", results);
-			                        	RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/Facturas/editFacturas2.jsp");
+			                        	req.setAttribute("resource", results);
+			                        	RequestDispatcher rd = req.getRequestDispatcher("/resources/edit");
 			                        	rd.forward(req, resp);}
 			                    	    //resp.getWriter().println(i);
 			                    	else if(req.getParameter("del")!=null){
 			                    	resp.setContentType("text/plain");
-			                    	String s=req.getParameter("del");
-			                    	Long ad=null;
-			                    	int e=(Integer.parseInt((String)s.substring(4)));
-			                    	int o=0;
-			                    	for( Resource p : resource ) {
-			                    		if(e==o){ad=Long.parseLong(p.getId());}
-			                    		o++;
-			                    	}
-			                    	q.setFilter("id == ad");
-			                    	q.declareParameters("Long ad");
-			                    	q.deletePersistentAll(ad);
-			                    	resp.sendRedirect("resources");}
+			                    	int e=(Integer.parseInt((String) req.getParameter("del")));
+			                    	req.setAttribute("e", e);
+		                        	RequestDispatcher rd = req.getRequestDispatcher("/resources/delete");
+		                        	rd.forward(req, resp);}
 								}
 			                    else{
 			                    req.setAttribute("resources", resource);

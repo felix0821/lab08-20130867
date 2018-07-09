@@ -25,11 +25,11 @@ public class RemoveFactura extends HttpServlet{
 			try{
 				q.deletePersistentAll();
 				resp.getWriter().println("Se han borrado facturas.");
-				resp.sendRedirect("/index.html");
+				resp.sendRedirect("/users/index");
 			}catch(Exception e){
 					System.out.println(e);
 					resp.getWriter().println("No se han podido borrar datos.");
-					resp.sendRedirect("/index.html");
+					resp.sendRedirect("/users/index");
 			}finally{
 				q.closeAll();
 				pm.close();

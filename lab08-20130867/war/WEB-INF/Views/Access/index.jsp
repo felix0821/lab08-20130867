@@ -5,7 +5,7 @@
 
 <html lang="es">
 <head>
-<title>view</title>
+<title>Index Access</title>
 <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,7 +25,7 @@ List<Access> roles = (List<Access>) request.getAttribute("access");
 <%if( roles.size()>0 ) {%>
 <%int c=0;%>
 <form action="access" method="get">
-<h2>Mostrando <%= roles.size() %> resultados</h2>
+<h2>Mostrando <%= roles.size() %> resultados de Acceso</h2>
 <div class="container">
 <table class="table table-hover">
     <thead>
@@ -48,7 +48,10 @@ List<Access> roles = (List<Access>) request.getAttribute("access");
         <td><%= p.getStatus() %></td>
         <td><%= p.getCreated() %></td>
         <td>
-        <div class="Cell"><input type="submit" class="btn btn-default" class="form-control" name="edit" value=<%="Edit-"+c%> /><input type="submit" class="btn btn-default" class="form-control" name="del" value=<%="Del-"+c%>  /></div>
+        <div class="Cell">
+        <button type="submit" value=<%=c%> name="edit" class="btn btn-default">Edit</button>
+        <button type="submit" value=<%=c%> name="del" class="btn btn-default">Del</button>
+        </div>
         </td>
       </tr>
       <%c++; %>

@@ -62,32 +62,36 @@ public class UsersControllerAdd extends HttpServlet {
 					}else{
 						//Ejecucion de la pagina
 						final Query r = pm.newQuery(Role.class);
+						final Query u = pm.newQuery(User.class);
 						try{
 						List<Role> roles = (List<Role>) r.execute();
-						String email;
-						String name;
-						Long role;
-						String birth;
-						boolean gender=false;
-						String date;
-						Long ad=null;
 						resp.setContentType("text/plain");
 						resp.setCharacterEncoding("UTF-8");
 						//verificamos si el boton esta apretado
 						 if(req.getParameter("submit")!=null&&req.getParameter("email")!=null){
-						email = req.getParameter("email");
+					    //Verificamos que el correo sea unico
+						boolean noRepetido=true;
+						List<User> users = (List<User>) u.execute();
+						for( User p : users ) {
+				    		if(p.getEmail().equals(req.getParameter("email"))){
+				    			noRepetido=false;}}
+						if(noRepetido){
+					    String email = req.getParameter("email");
 						String rol = req.getParameter("rol");
+						Long ad=null;
 				    	for( Role p : roles ) {
 				    		if(rol.equals(p.getName())){
-				    			ad=Long.parseLong(p.getId());}
-				    	}
+				    			ad=Long.parseLong(p.getId());}}
 				    	r.setFilter("id == ad");
 				    	r.declareParameters("Long ad");
-						role = ad;
-						birth = req.getParameter("selectDay")+"/"+req.getParameter("selectMonth")+"/"+req.getParameter("selectYear");
-						date = fecha();
+				    	Long role = ad;
+				    	int birthD = Integer.parseInt(req.getParameter("selectDay"));
+				    	String birthM = req.getParameter("selectMonth");
+						int birthY = Integer.parseInt(req.getParameter("selectYear"));
+						String date = fecha();
+						boolean gender=false;
 						if(req.getParameter("gender")!=null){gender=true;}
-						final User p = new User(email, role, birth, gender, date);
+						final User p = new User(email, role, birthD, birthM, birthY, gender, date);
 						try{
 							pm.makePersistent(p);
 							resp.getWriter().println("Persona grabada correctamente.");
@@ -95,11 +99,17 @@ public class UsersControllerAdd extends HttpServlet {
 						catch(Exception e){
 							System.out.println(e);
 							resp.getWriter().println("Ocurrió un error, vuelva a intentarlo.");
-							resp.sendRedirect("/user/add");}
+							resp.sendRedirect("/user/add");}}
+						else{
+							resp.setContentType("text/plain");
+							resp.getWriter().println("Ya existe esta cuenta");
+							RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/Views/Error/errorExist.jsp");
+							rd.forward(req, resp);
+						}
 						
 						}else{
 							if(req.getParameter("email")!=null){
-								email = req.getParameter("email");
+								String email = req.getParameter("email");
 								req.setAttribute("email", email);}
 							
 							req.setAttribute("roles", roles);
@@ -110,6 +120,7 @@ public class UsersControllerAdd extends HttpServlet {
 					    	System.out.println(e);
 						}finally{
 							r.closeAll();
+							u.closeAll();
 						}
 						//fin de la ejecucion
 		}}}}

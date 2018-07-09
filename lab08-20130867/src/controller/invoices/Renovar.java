@@ -48,7 +48,7 @@ import controller.PMF;
                     }
                     		//resp.getWriter().println(i);
                     else{
-					RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/Facturas/editFacturas.jsp");
+					RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/Views/Invoices/editFacturas.jsp");
 					rd.forward(req, resp);
                     }
 				

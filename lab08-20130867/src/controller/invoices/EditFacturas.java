@@ -40,7 +40,7 @@ import model.entity.Factura;
                         	q.declareParameters("Long ad");
                         	List<Factura> results = (List<Factura>) q.execute(ad);
                         	req.setAttribute("fact", results);
-                        	RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/Facturas/editFacturas2.jsp");
+                        	RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/Views/Invoices/editFacturas2.jsp");
                         	rd.forward(req, resp);
                     		//resp.getWriter().println(i);
                     	}
@@ -72,7 +72,7 @@ import model.entity.Factura;
 					}
                     else{
                     req.setAttribute("facturas", factura);
-					RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/views/Facturas/editFacturas.jsp");
+					RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/Views/Invoices/editFacturas.jsp");
 					rd.forward(req, resp);
                     }
 				
